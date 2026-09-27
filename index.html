@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Himalayan Bean Odyssey — Interactive Nepal Coffee Story & Sensory Game</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Top App Header & Stage Stepper -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand-block">
+        <div class="brand-logo">☕</div>
+        <div>
+          <div class="brand-title serif-title">Himalayan Bean Odyssey</div>
+          <div class="brand-subtitle">Interactive Nepal Coffee Story: Varietal • Altitude • Fermentation • Roast • Extraction</div>
+        </div>
+      </div>
+      <nav id="stage-stepper" class="stage-stepper"></nav>
+    </div>
+  </header>
+
+  <!-- Challenge Quest Bar -->
+  <section class="quest-bar">
+    <div id="quest-bar-content" class="quest-bar-inner"></div>
+  </section>
+
+  <!-- Main Two-Column Game Workspace -->
+  <main class="main-container">
+    <div class="stages-column">
+
+      <!-- ================================================================ -->
+      <!-- STAGE 1: ARABICA VARIETALS & 10 NEPAL ALTITUDE LOCATIONS         -->
+      <!-- ================================================================ -->
+      <section id="stage-1" class="stage-panel active">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <span class="stage-badge">Chapter 1A • Botanical Genetics (Hover Cards)</span>
+              <h2 class="card-title">Choose Your Arabica Coffee Species Variant</h2>
+              <p class="card-desc">
+                Each card displays the <strong>species name, optimal altitude, and tasting notes</strong>—<strong>hover your mouse over any variety</strong> to pop out its full botanical story, lineage, and genetic flavor profile!
+              </p>
+            </div>
+          </div>
+          <div id="varietal-grid" class="varietal-grid"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <span class="stage-badge">Chapter 1B • Interactive Nepal Terroir Map (600m – 1,800m)</span>
+              <h2 class="card-title">Explore & Click a Coffee District on the Map of Nepal (13 Places)</h2>
+              <p class="card-desc">
+                Click any glowing district pin across Nepal—from Western <strong>Gulmi & Palpa</strong> to Central <strong>Nuwakot & Sindhupalchok</strong> and Far-Eastern <strong>Ilam, Panchthar & Taplejung</strong>—to reveal its regional info, animated hillside sunlight slope angle (θ°, visual only), and bean density!
+              </p>
+            </div>
+          </div>
+
+          <div class="nepal-map-fullwidth-wrap">
+            <div id="nepal-interactive-map-box" class="map-container-box"></div>
+            <div id="himalayan-visualizer" class="visualizer-box"></div>
+          </div>
+
+          <div class="stage-footer-nav">
+            <span style="font-size:0.8rem;color:var(--text-muted);">Step 1 of 5: Genetics & Elevation locked in</span>
+            <button class="btn-primary" onclick="goToStage(2)">
+              Next: Fermentation Methods →
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- STAGE 2: FERMENTATION & POST-HARVEST PROCESSING                  -->
+      <!-- ================================================================ -->
+      <section id="stage-2" class="stage-panel">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <span class="stage-badge">Chapter 2 • Post-Harvest Microbiology</span>
+              <h2 class="card-title">Fermentation & Cherry Processing Methods</h2>
+              <p class="card-desc">
+                Inside a ripe red coffee cherry, two green seeds sit wrapped in parchment, sticky sugar-rich <strong>mucilage</strong>, and outer fruit skin. How farmers remove—or ferment—those fruit layers radically alters sweetness, body, clarity, and winey/tropical funk.
+              </p>
+            </div>
+          </div>
+
+          <div id="fermentation-grid" class="ferment-grid"></div>
+
+          <div id="fermentation-visualizer" class="visualizer-box" style="margin-top:1.2rem;"></div>
+
+          <div class="stage-footer-nav">
+            <button class="btn-secondary" onclick="goToStage(1)">← Back to Varietal & Altitude</button>
+            <button class="btn-primary" onclick="goToStage(3)">Next: Roasting Spectrum →</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- STAGE 3: ROASTING SPECTRUM (LIGHT TO DARK)                       -->
+      <!-- ================================================================ -->
+      <section id="stage-3" class="stage-panel">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <span class="stage-badge">Chapter 3 • Thermodynamics & Maillard Reactions</span>
+              <h2 class="card-title">Roasting: From Ultra-Light Cinnamon to Dark French</h2>
+              <p class="card-desc">
+                Green coffee beans are dense and grassy. Inside a rotating drum roaster (188°C–240°C), amino acids and sugars react (<strong>Maillard reaction</strong>), sucrose caramelizes, steam pops the bean open at <strong>First Crack (💥 ~198°C)</strong>, and cellulose walls fracture at <strong>Second Crack (💥💥 ~224°C)</strong>.
+              </p>
+            </div>
+          </div>
+
+          <div class="roast-slider-wrap">
+            <div style="display:flex;justify-content:space-between;font-size:0.84rem;font-weight:700;color:var(--cream);margin-bottom:0.4rem;">
+              <span>🌾 Light (Origin & Acidity Preserved)</span>
+              <span>🍯 Medium (Peak Caramel & Maillard Balance)</span>
+              <span>🔥 Dark (Roast Bitterness & Smoky Body)</span>
+            </div>
+            <input
+              id="roast-spectrum-slider"
+              type="range"
+              min="0"
+              max="100"
+              value="45"
+              class="custom-slider"
+              oninput="setRoastSlider(this.value)"
+            />
+            <div id="roast-presets-bar" class="roast-stages-bar"></div>
+          </div>
+
+          <div id="roast-visualizer" style="margin-top:1.25rem;"></div>
+
+          <div class="stage-footer-nav">
+            <button class="btn-secondary" onclick="goToStage(2)">← Back to Fermentation</button>
+            <button class="btn-primary" onclick="goToStage(4)">Next: Grinding & Extraction →</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- STAGE 4: GRINDING & EXTRACTION TECHNIQUES                        -->
+      <!-- ================================================================ -->
+      <section id="stage-4" class="stage-panel">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <span class="stage-badge">Chapter 4 • Surface Area & Extraction Physics</span>
+              <h2 class="card-title">Grinding & Extraction: Coarser for Filter, Finer for Espresso</h2>
+              <p class="card-desc">
+                Hot water dissolves coffee compounds in a strict sequence: <strong>1. Sparkling Acids & Fruit (fast) → 2. Sweet Sugars (medium) → 3. Bitter Tannins & Plant Fibers (slow)</strong>.
+                High-pressure <strong>Espresso</strong> (~28 sec) needs a <strong>Fine grind (250–380 µm)</strong> to expose massive surface area fast, while gravity <strong>Pour-Over / Immersion Filters</strong> (2.5–4 min) require a <strong>Medium-to-Coarse grind (600–1,100 µm)</strong> so water doesn't over-extract harsh bitterness!
+              </p>
+            </div>
+          </div>
+
+          <h4 style="font-size:0.95rem;color:var(--accent-gold);margin-bottom:0.65rem;">
+            Step 4A: Select Your Extraction Technique
+          </h4>
+          <div id="brew-methods-grid" class="ferment-grid" style="margin-bottom:1.25rem;"></div>
+
+          <h4 style="font-size:0.95rem;color:var(--accent-gold);margin-bottom:0.65rem;">
+            Step 4B: Dial In Your Burr Grinder (Microns), Contact Time & Water Temp
+          </h4>
+          <div id="extraction-controls-panel"></div>
+
+          <div class="stage-footer-nav">
+            <button class="btn-secondary" onclick="goToStage(3)">← Back to Roasting</button>
+            <button class="btn-primary" onclick="goToStage(5)">🏆 Reveal Final Taste Profile & Cupping Report →</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- STAGE 5: FINAL TASTE PROFILE & CUPPING METRIC REPORT             -->
+      <!-- ================================================================ -->
+      <section id="stage-5" class="stage-panel">
+        <div id="stage-5-report-container"></div>
+        <div class="stage-footer-nav" style="margin-bottom:2rem;">
+          <button class="btn-secondary" onclick="goToStage(4)">← Adjust Grind & Extraction</button>
+          <button class="btn-primary" onclick="goToStage(1)">🔄 Craft Another Nepali Coffee</button>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Right Sticky Live Bean Passport Sidebar -->
+    <aside class="passport-sidebar">
+      <div id="live-passport-sidebar" class="passport-card"></div>
+    </aside>
+  </main>
+
+  <script src="coffee-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
